@@ -39,7 +39,7 @@ app.get("/api/:date", function (req, res) {
     const myUnixTimestamp = parseInt(date_str); // start with a Unix timestamp
     const myDate = new Date(myUnixTimestamp); // convert timestamp to milliseconds and construct Date object
     console.log(typeof(Number(myDate)));
-    res.json({unix: Number(myUnixTimestamp), utc: myDate.toUTCString()});
+    res.json({unix: Number(myDate), utc: myDate.toUTCString()});
   }else{
     const timeInMillisecond = date.getTime();
     const unixTimestamp = Math.floor(date.getTime() / 1000);
