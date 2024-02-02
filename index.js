@@ -24,11 +24,17 @@ app.get("/api/hello", function (req, res) {
 });
 
 app.get("/api/:date", function (req, res) {
-  let date1 = new Date(req.params.date);
-  if(date1==null){
-    res.json({unix: Date.now(), utc: Date.now().toUTCString()});
+  let date_str = req.params.date;
+  const date = new Date(date_str);
+  if(date == "Invalid Date"){
+    console.log(date_str);
+    const myUnixTimestamp = parseInt(date_str); // start with a Unix timestamp
+    const myDate = new Date(myUnixTimestamp); // convert timestamp to milliseconds and construct Date object
+    res.json({unix: myUnixTimestamp, utc: myDate.toUTCString()});
   }else{
-    res.json({ unix: req.params.date, utc: date1.toUTCString()});
+    const timeInMillisecond = date.getTime();
+    const unixTimestamp = Math.floor(date.getTime() / 1000);
+    res.json({unix: unixTimestamp, utc: date.toUTCString()});
   }
   
 });
