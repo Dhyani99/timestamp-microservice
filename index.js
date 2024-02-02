@@ -21,7 +21,7 @@ app.get("/", function (req, res) {
 app.get("/api/", function(req, res){
 
   const curr_date = new Date(Date.now());
-  const unix_time = Math.floor(curr_date.getTime() / 1000); 
+  const unix_time = curr_date.getTime(); 
   const utc_date = curr_date.toUTCString();
   res.json({unix: unix_time, utc: utc_date});
 
