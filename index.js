@@ -26,7 +26,7 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:date", function (req, res) {
   let date_str = req.params.date;
   const date = new Date(date_str);
-  if(date== ""){
+  if(!date){
     const curr_date = Date.now();
     const unix_time = Math.floor(curr_date.getTime() / 1000); 
     const utc_date = curr_date.toUTCString();
