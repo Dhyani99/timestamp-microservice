@@ -34,11 +34,12 @@ app.get("/api/hello", function (req, res) {
 app.get("/api/:date", function (req, res) {
   let date_str = req.params.date;
   const date = new Date(date_str);
- 
+  
   if(date == "Invalid Date"){
     const myUnixTimestamp = parseInt(date_str); // start with a Unix timestamp
     const myDate = new Date(myUnixTimestamp); // convert timestamp to milliseconds and construct Date object
-    res.json({unix: myUnixTimestamp, utc: myDate.toUTCString()});
+    console.log(typeof(Number(myDate)));
+    res.json({unix: Number(myUnixTimestamp), utc: myDate.toUTCString()});
   }else{
     const timeInMillisecond = date.getTime();
     const unixTimestamp = Math.floor(date.getTime() / 1000);
